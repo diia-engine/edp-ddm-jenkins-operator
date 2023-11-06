@@ -18,10 +18,12 @@ String deployRegistryRegulationsStages = '[' +
         '{"name": "create-redash-roles"}]},' +
         '{"parallelStages": [{"name": "deploy-data-model"},' +
         ((deploymentMode.equals("development") ? '[{"name": "restore-redash-admin-state"},' : '[')) +
+        '{"name": "update-registry-logos"},' +
+        '{"name": "deploy-bp-webservice-gateway"},' +
         '{"name": "upload-global-vars-changes"},' +
         '{"name": "create-trembita-business-process"},' +
         '{"name": "update-registry-settings"},' +
-        '{"name": "update-theme-login-page"},' +
+        '{"name": "update-login-page"},' +
         '{"name": "create-keycloak-roles"},' +
         '{"name": "update-bp-grouping"},' +
         '{"name": "bpms-rollout"},' +

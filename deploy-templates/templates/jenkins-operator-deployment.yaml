@@ -18,8 +18,6 @@ spec:
       labels:
         name: {{ .Values.name }}
         collect.logs: "plain-text"
-      annotations:
-        sidecar.istio.io/inject: "false"
     spec:
       serviceAccountName: {{ .Values.operator.serviceAccountName }}
       securityContext:
