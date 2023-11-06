@@ -1,8 +1,20 @@
+global:
+  container:
+    requestsLimitsEnabled: true
+  platform: openshift
+  registry:
+    jenkins:
+      container:
+        resources:
+          requests: {}
+          limits: {}
+  storageClass: ocs-storagecluster-ceph-rbd
+
 name: jenkins-operator
 operator:
   image:
     name: control-plane/jenkins-operator
-    version: 2.15.0
+    version: 2.15.3
   serviceAccountName: jenkins-operator
   clusterRoleName: jenkins-operator-clusterrole
 
@@ -20,12 +32,12 @@ jenkins:
   sharedLibraries:
     edp-library-stages:
       url: ssh://jenkins@gerrit.mdtu-ddm-edp-cicd.svc:32114/mdtu-ddm/devops/registry-regulations-publications/registry-regulations-publication-stages.git
-      tag: build/1.5.0-SNAPSHOT.6
+      tag: build/1.9.8.1
       secret: edp-gerrit-ciuser-sshkey
       type: ssh
     edp-library-pipelines:
       url: ssh://jenkins@gerrit.mdtu-ddm-edp-cicd.svc:32114/mdtu-ddm/devops/registry-regulations-publications/registry-regulations-publication-pipeline.git
-      tag: build/1.9.7.11
+      tag: build/1.9.8.6
       secret: edp-gerrit-ciuser-sshkey
       type: ssh
   jobProvisioner: registry
@@ -58,9 +70,6 @@ registryRegulation:
 # Test values (actually are passed via deploy pipeline)
 dockerRegistry: docker-registry.openshift-image-registry.svc
 dockerProxyRegistry: docker-registry.openshift-image-registry.svc
-global:
-  storageClass: ocs-storagecluster-ceph-rbd
-  platform: openshift
 image:
   version: 1.1.1-1
 
