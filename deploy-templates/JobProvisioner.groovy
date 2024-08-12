@@ -12,7 +12,6 @@ String codebaseHistoryName = "history-excerptor"
 String deployRegistryRegulationsStages = '[' +
         '{"stages": [{"name": "checkout"},' +
         '{"name": "init-registry"},' +
-        '{"name": "get-changes"},' +
         '{"name": "registry-regulations-validation"},' +
         '{"name": "shutdown-services"},' +
         '{"name": "create-backup"},' +
