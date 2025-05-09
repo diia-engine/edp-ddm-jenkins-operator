@@ -26,7 +26,6 @@ String deployRegistryRegulationsStages = '[' +
         '{"name": "update-login-page"},' +
         '{"name": "create-keycloak-roles"},' +
         '{"name": "update-bp-grouping"},' +
-        '{"name": "bpms-rollout"},' +
         '{"name": "upload-business-process-changes"},' +
         '{"name": "create-permissions-business-process"},' +
         '{"name": "upload-form-changes"},' +
@@ -34,7 +33,8 @@ String deployRegistryRegulationsStages = '[' +
         '{"name": "import-excerpts"},' +
         ((deploymentMode.equals("development") ? '{"name": "import-mock-integrations"},' : '')) +
         '{"name": "publish-notification-templates"}]]},' +
-        '{"stages": [{"name": "publish-geoserver-configuration"},' +
+        '{"stages": [{"name": "bpms-rollout"},' +
+        '{"name": "publish-geoserver-configuration"},' +
         '{"name": "run-autotests"}]}' +
         ']'
 

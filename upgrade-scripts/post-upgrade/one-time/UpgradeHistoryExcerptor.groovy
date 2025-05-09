@@ -30,15 +30,15 @@ void call() {
         // Create codebasebranch CR for history-excerptor codebase
         sh "oc apply -f ./resources/historyExcerptorCodebasebranch.yaml -n $NAMESPACE"
         // Create folder with temp name history-excerptor-job for history-excerptor pipeline
-        sh "curl -XPOST \"$JENKINS_URL_WITH_CREDS/createItem?name=history-excerptor-job&mode=com.cloudbees.hudson.plugins.folder.Folder&Submit=OK\" " +
+        sh "set +x; curl -XPOST \"$JENKINS_URL_WITH_CREDS/createItem?name=history-excerptor-job&mode=com.cloudbees.hudson.plugins.folder.Folder&Submit=OK\" " +
                 "-H \"Content-Type:application/x-www-form-urlencoded\""
 
         // Move pipeline into history-excerptor-job folder and rename it to history-excerptor
-        sh "curl --user '$JENKINS_ADMIN_USERNAME:$JENKINS_ADMIN_PASSWORD' " +
+        sh "set +x; curl --user '$JENKINS_ADMIN_USERNAME:$JENKINS_ADMIN_PASSWORD' " +
                 "--data-urlencode \"script=\$(< ./resources/movejob.groovy)\" $JENKINS_URL/scriptText"
 
         // Manually trigger registry job-provisioner to create Create-release-history-excerptor pipeline
-        sh "curl -XPOST \"$JENKINS_URL_WITH_CREDS/job/job-provisions/job/ci/job/registry/buildWithParameters?" +
+        sh "set +x; curl -XPOST \"$JENKINS_URL_WITH_CREDS/job/job-provisions/job/ci/job/registry/buildWithParameters?" +
                 "NAME=$NAME&DEFAULT_BRANCH=$DEFAULT_BRANCH&GIT_CREDENTIALS_ID=$GIT_CREDENTIALS_ID&" +
                 "GERRIT_PORT=$GERRIT_PORT&REPOSITORY_PATH=$REPOSITORY_PATH&DEPLOYMENT_MODE=$DEPLOYMENT_MODE\""
     }
